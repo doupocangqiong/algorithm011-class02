@@ -104,9 +104,53 @@ function selectSort($arr)
 从前到后逐步构建有序序列；对于未排序数据，在已排序序列中从后
 向前扫描，找到相应位置并插入。
 
+```php
+function insertSort($arr)
+{
+    // 已经间接将数组分成了2部分，下标小于当前的（左边的）是排序好的序列
+    for ($i = 1, $len = count($arr);$i < $len; $i ++)
+    {
+        // 获得当前需要比较的元素值。
+        $tmp = $arr[$i];
+        // 内层循环，控制比较并插入
+        for($j = $i-1;$j >= 0;$j --)
+        {
+            if ($tmp < $arr[$j]) {
+                $arr[$j + 1] = $arr[$j];
+                $arr[$j] = $tmp;
+            } else {
+                break;
+            }
+        }
+    }
+    return $arr;
+}
+```
+
 
 3.冒泡排序（Bubble Sort）
 嵌套循环，每次查看相邻的元素如果逆序，则交换。
+
+```php
+function maopao($arr)
+{
+    $len = count($arr); // 计算数组长度
+    for ($i = 1;$i < $len; $i ++)
+    {
+        // 该层循环控制需要冒泡的轮数
+        for ($k = 0; $k < $len - $i; $k ++)
+        {
+            if ($arr[$k] > $arr[$k + 1]) {
+                $tmp = $arr[$k + 1];
+                $arr[$k + 1] = $arr[$k];
+                $arr[$k] = $tmp;
+            }
+        }
+    }
+    return $arr;
+}
+
+```
 
 ### 高级排序 - O(N*LogN)
 
